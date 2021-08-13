@@ -3,6 +3,7 @@
     [clojure.math.numeric-tower :as math]))
 
 (defn sudoku?
+  "Returns true if the table is a properly formatted sudoku table"
   [table]
   (and 
     (coll? table)
@@ -15,3 +16,11 @@
             (coll? %)
             (= (count %) length))
           table)))))
+
+(defn solved?
+  "Returns true if the table is solved"
+  [table]
+  (and
+    (sudoku? table)
+    (= 1 (count table))
+    (= 1 (first (first table)))))
